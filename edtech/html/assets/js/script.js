@@ -61,3 +61,31 @@ const activeElem = function () {
 }
 
 addEventOnElem(window, "scroll", activeElem);
+// Inside your existing JavaScript file
+
+// Create User
+document.getElementById('create-user-form').addEventListener('submit', function (event) {
+  event.preventDefault();  // Prevent page reload
+
+  const name = document.getElementById('user-name').value;
+  const email = document.getElementById('user-email').value;
+
+  // Make POST request to Cosmocloud Create User API
+  fetch('https://free-ap-south-1.cosmocloud.io/development/api/user', {  // Replace with your API URL
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      password: password
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('User created:', data);
+    // Display success message or update the UI
+  })
+  .catch(error => console.error('Error creating user:', error));
+});
