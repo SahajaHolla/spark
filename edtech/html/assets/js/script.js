@@ -78,8 +78,7 @@ document.getElementById('create-user-form').addEventListener('submit', function 
     },
     body: JSON.stringify({
       name: name,
-      email: email,
-      password: password
+      email: email
     })
   })
   .then(response => response.json())
@@ -89,3 +88,27 @@ document.getElementById('create-user-form').addEventListener('submit', function 
   })
   .catch(error => console.error('Error creating user:', error));
 });
+// Fetch User by ID
+document.getElementById('fetch-user-btn').addEventListener('click', function () {
+  const userId = document.getElementById('fetch-user-id').value;
+
+  // Make GET request to Cosmocloud Fetch User API
+  fetch(`https://free-ap-south-1.cosmocloud.io/development/api/user/${userId}`, {  // Replace with your API URL
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('User fetched:', data);
+
+    // Display the fetched user information in the frontend
+    document.getElementById('user-info').innerHTML = `
+      <p>Name: ${data.name}</p>
+      <p>Email: ${data.email}</p>
+    `;
+  })
+  .catch(error => console.error('Error fetching user:', error));
+});
+
