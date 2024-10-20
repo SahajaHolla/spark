@@ -111,4 +111,27 @@ document.getElementById('fetch-user-btn').addEventListener('click', function () 
   })
   .catch(error => console.error('Error fetching user:', error));
 });
+// Delete User by ID
+document.getElementById('delete-user-btn').addEventListener('click', function () {
+  const userId = document.getElementById('delete-user-id').value;
+
+  // Make DELETE request to Cosmocloud Delete User API
+  fetch(`https://free-ap-south-1.cosmocloud.io/development/api/user/${userId}`, {  // Replace with your API URL
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('User deleted');
+      // Update the UI to show that the user has been deleted
+      alert('User successfully deleted');
+    } else {
+      console.error('Error deleting user');
+    }
+  })
+  .catch(error => console.error('Error deleting user:', error));
+});
+
 
