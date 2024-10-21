@@ -1,1 +1,1 @@
-# spark
+# This is a edtech website called spark in the website we provide users with the courses the want to excel in the website consists of HTML CSS and javascript we have used cosmocloud's API the users can login with their credentials and buy the courses they want and start learning.
